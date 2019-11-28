@@ -1,0 +1,59 @@
+﻿@inject IModalDialogService ModalDialogService
+
+<p>Form Id input Parameter : @FormId</p>
+
+<div class="simple-form">
+
+    <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input @bind="FirstName" type="text" class="form-control" id="first-name" placeholder="Enter First Name" />
+    </div>
+
+    <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input @bind="LastName" type="text" class="form-control" id="last-name" placeholder="Enter Last Name" />
+    </div>
+
+    <button @onclick="Ok_Clicked" class="btn btn-primary">Submit</button>
+    <button @onclick="Cancel_Clicked" class="btn btn-secondary">Cancel</button>
+</div>
+
+
+@code {
+
+    [CascadingParameter] ModalDialogParameters Parameters { get; set; }
+
+    bool ShowForm { get; set; } = true;
+    string FirstName { get; set; }
+    string LastName { get; set; }
+    int FormId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        FormId = Parameters.Get<int>("FormId");
+    }
+
+    async void Ok_Clicked()
+    {
+        if (string.IsNullOrWhiteSpace(FirstName) && string.IsNullOrWhiteSpace(LastName))
+        {
+            ModalDialogResult result = await ModalDialogService.ShowDialogAsync<ValidationErrorForm>("Validation Errors");
+            if (result.Success == false)
+                ModalDialogService.Close(false);
+        }
+        else
+        {
+            ModalDialogParameters resultParameters = new ModalDialogParameters();
+            resultParameters.Set("FirstName", FirstName);
+            resultParameters.Set("LastName", LastName);
+            resultParameters.Set("FullName", FirstName + " " + LastName);
+            ModalDialogService.Close(true, resultParameters);
+        }
+    }
+
+    void Cancel_Clicked()
+    {
+        ModalDialogService.Close(false);
+    }
+
+}

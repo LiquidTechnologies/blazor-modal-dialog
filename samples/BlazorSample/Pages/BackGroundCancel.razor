@@ -1,0 +1,35 @@
+﻿@page "/backgroundcancel"
+@inject IModalDialogService ModalDialog
+
+<h1>Click background to cancel</h1>
+
+<hr class="mb-5" />
+
+<p>
+    A modal is cancelled by default if the user clicks outside the modal. This behavior can
+    be disabled.
+</p>
+<button @onclick="BackgroundCancelEnabled" class="btn btn-primary">Cancellation enabled</button>
+<button @onclick="BackgroundCancelDisabled" class="btn btn-secondary">Cancellation disabled</button>
+
+@code {
+
+    void BackgroundCancelEnabled()
+    {
+        var parameters = new ModalDialogParameters();
+        parameters.Add("FormId", 11);
+        var options = new ModalDialogOptions() { BackgroundClickToClose = true };
+
+        ModalDialog.ShowDialogAsync<SignUpForm>("Sign Up Form", options, parameters);
+    }
+
+    void BackgroundCancelDisabled()
+    {
+        var parameters = new ModalDialogParameters();
+        parameters.Add("FormId", 11);
+        var options = new ModalDialogOptions() { BackgroundClickToClose = false };
+
+        ModalDialog.ShowDialogAsync<SignUpForm>("Sign Up Form", options, parameters);
+    }
+}
+

@@ -1,0 +1,63 @@
+﻿@page "/messagebox"
+@inject IModalDialogService ModalDialog
+@layout CustomModalLayout
+
+<h1>Liquid Technologies Modal Dialog  Sample MessageBox's</h1>
+
+<hr class="mb-5" />
+
+<p>
+    Shows how basic MessageBoxes can be displayed:
+</p>
+<p>
+    <button @onclick="ShowMessageBoxOK" class="btn btn-primary">Show MessageBox - OK</button>
+</p>
+<p>
+    <button @onclick="ShowMessageBoxYesNoCancel" class="btn btn-primary">Show MessageBox - Yes/No/Cancel</button>
+</p>
+<p>
+    <button @onclick="ShowMessageBoxYesNo" class="btn btn-primary">Show MessageBox - Yes/No</button>
+</p>
+<p>
+    <button @onclick="ShowMessageBoxAbortRetryIgnore" class="btn btn-primary">Show MessageBox - Abort/Retry/Ignore</button>
+</p>
+
+<div>
+    Last Message box result : @LastMessageBoxResult
+</div>
+
+@code {
+
+    string LastMessageBoxResult = "Not Set";
+
+    async void ShowMessageBoxOK()
+    {
+        MessageBoxDialogResult result = await ModalDialog.ShowMessageBox("Simple Message Box", "Click OK, the close button or the background to Close", MessageBoxButtons.OK, MessageBoxDefaultButton.Button1);
+
+        LastMessageBoxResult = result.ToString();
+        StateHasChanged();
+    }
+
+    async void ShowMessageBoxYesNoCancel()
+    {
+        MessageBoxDialogResult result = await ModalDialog.ShowMessageBox("Yes/No/Cancel Message Box", "Clicking the close button or the background is equivient to the Cancel button. Setting the default button to Button2 causes the 'No' button to be highlighted.", MessageBoxButtons.YesNoCancel, MessageBoxDefaultButton.Button2);
+        LastMessageBoxResult = result.ToString();
+        StateHasChanged();
+    }
+
+    async void ShowMessageBoxYesNo()
+    {
+        MessageBoxDialogResult result = await ModalDialog.ShowMessageBox("Yes/No Message Box", "Requires the Yes/No button to be pressed, can't be dismissed with the close or clicking in the background", MessageBoxButtons.YesNo, MessageBoxDefaultButton.Button2);
+        LastMessageBoxResult = result.ToString();
+        StateHasChanged();
+    }
+
+    async void ShowMessageBoxAbortRetryIgnore()
+    {
+        MessageBoxDialogResult result = await ModalDialog.ShowMessageBox("Abort/Retry/Ignore Message Box", "Requires the Abort/Retry/Ignore button to be pressed, can't be dismissed with the close or clicking in the background", MessageBoxButtons.AbortRetryIgnore, MessageBoxDefaultButton.Button3);
+        LastMessageBoxResult = result.ToString();
+        StateHasChanged();
+    }
+
+}
+

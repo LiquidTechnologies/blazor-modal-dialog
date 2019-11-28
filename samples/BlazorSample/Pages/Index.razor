@@ -1,0 +1,60 @@
+﻿@page "/"
+@inject IModalDialogService ModalDialog
+
+<h1>Liquid Technologies Modal Dialog Sample</h1>
+
+<hr class="mb-5" />
+
+<p>
+    This example shows how a ModalDialog can be incorporated into the
+    logical flow of an async function, and how data can be passed to
+    and retrieved.
+</p>
+
+<pre>
+
+    async void ShowModal()
+    {
+        // Arguments can be passed into the modal dialog
+        var parameters = new ModalDialogParameters();
+        parameters.Add("FormId", 11);
+
+        // using await will cause execution to resume when the dialog has been closed.
+        ModalDialogResult result = await ModalDialog.ShowDialogAsync&lt;SignUpForm&gt;("Sign Up Form", null, parameters);
+        if (result.Success)
+            Message = "User Provided the value : " + result.ReturnParameters.Get&lt;string&gt;("FullName");
+        else
+            Message = "User Cancelled";
+    }
+</pre>
+
+<p>
+    This example also show the ability to nest dialog boxes, for examples
+    if you submit the popup form without populating any data, a confirmation
+    dialog is shown over the top of the active dialog.
+</p>
+
+<button @onclick="ShowModal" class="btn btn-primary">Show Modal</button>
+
+<p>@Message</p>
+
+@code {
+    string Message = "";
+
+
+    async void ShowModal()
+    {
+        Message = "Requesting Data From User";
+        StateHasChanged();
+
+        var parameters = new ModalDialogParameters();
+        parameters.Add("FormId", 11);
+        ModalDialogResult result = await ModalDialog.ShowDialogAsync<SignUpForm>("Sign Up Form", null, parameters);
+        if (result.Success)
+            Message = "User Provided the value : " + result.ReturnParameters.Get<string>("FullName");
+        else
+            Message = "User Cancelled";
+        StateHasChanged();
+    }
+}
+

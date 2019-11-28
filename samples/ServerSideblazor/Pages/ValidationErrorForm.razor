@@ -1,0 +1,27 @@
+﻿@inject IModalDialogService ModalDialogService
+
+<div class="simple-form">
+    <div class="form-group">
+        <p>The data you have entered is incomplete or contains errors.</p>
+        <p><i>This demonstrates using nested dialogs, i.e. the Errors dialog over the SignUp form</i></p>
+    </div>
+
+    <button @onclick="Retry_Clicked" class="btn btn-outline-danger">Retry</button>
+    <button @onclick="Cancel_Clicked" class="btn btn-primary">Cancel</button>
+</div>
+
+
+@code {
+
+    [CascadingParameter] ModalDialogParameters Parameters { get; set; }
+
+    void Retry_Clicked()
+    {
+        ModalDialogService.Close(true);
+    }
+
+    void Cancel_Clicked()
+    {
+        ModalDialogService.Close(false);
+    }
+}

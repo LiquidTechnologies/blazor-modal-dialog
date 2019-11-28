@@ -1,0 +1,33 @@
+﻿@page "/custom"
+@inject IModalDialogService ModalDialog
+@layout CustomModalLayout
+
+<h1>Liquid Technologies Modal Dialog Sample with Custom Styling</h1>
+
+<hr class="mb-5" />
+<p>
+    A custom style can also be set as a parameter on the <code>Modal.Show()</code> method.
+</p>
+<button @onclick="ShowModalCustomStyle" class="btn btn-primary">Show Modal styled as a prompt</button>
+
+<hr class="mb-5" />
+<p>
+    The same dialog with the default styling:
+</p>
+<button @onclick="ShowModal" class="btn btn-primary">Show Modal Default styles</button>
+
+
+@code {
+
+    void ShowModalCustomStyle()
+    {
+        var options = new ModalDialogOptions() { Style = "liquid-prompt-modal" };
+
+        ModalDialog.ShowDialogAsync<ValidationErrorForm>("Delete record?", options);
+    }
+
+    async void ShowModal()
+    {
+        ModalDialog.ShowDialogAsync<ValidationErrorForm>("Delete record?");
+    }
+}

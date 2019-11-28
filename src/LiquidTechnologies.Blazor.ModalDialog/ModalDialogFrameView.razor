@@ -1,0 +1,25 @@
+﻿@inherits ModalDialogFrameViewBase
+@using Microsoft.AspNetCore.Components.Web
+
+<div class="liquid-modal-dialog-container liquid-modal-dialog-active @ModalDialogEntry.Options.Position">
+    <div class="liquid-modal-dialog-overlay" @onclick="HandleBackgroundClick"></div>
+
+    <div class="liquid-modal-dialog-wrapper">
+        <div class="@ModalDialogEntry.Options.Style">
+            <div class="liquid-modal-dialog-header">
+                <h3 class="liquid-modal-dialog-title">@Title</h3>
+                @if (ModalDialogEntry.Options.ShowCloseButton)
+                {
+                    <button type="button" class="liquid-modal-dialog-close" @onclick="@HandleCloseBtnClick">
+                        <span>&times;</span>
+                    </button>
+                }
+            </div>
+            <div class="liquid-modal-dialog-content">
+                <CascadingValue Value="@ModalDialogEntry.Parameters">
+                    @ModalDialogEntry.DialogContents
+                </CascadingValue>
+            </div>
+        </div>
+    </div>
+</div>

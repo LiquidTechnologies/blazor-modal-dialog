@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@implements IDisposable
+@inject LiquidTechnologies.Blazor.ModalDialog.Services.IModalDialogService DialogService
+
+@foreach (LiquidTechnologies.Blazor.ModalDialog.Services.ModalDialogModel modalDialogEntry in DialogService.ModalDialogFrames.Reverse())
+{
+    <ModalDialogFrameView @key="modalDialogEntry"
+                          Title="@modalDialogEntry.Title"
+                          ModalDialogEntry="@modalDialogEntry"/>
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        DialogService.Changed += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        DialogService.Changed -= StateHasChanged;
+    }
+}
