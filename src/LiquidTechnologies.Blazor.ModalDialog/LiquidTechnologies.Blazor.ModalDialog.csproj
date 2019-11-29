@@ -5,18 +5,21 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <RootNamespace>LiquidTechnologies.Blazor.ModalDialog</RootNamespace>
     
-    <Authors>Simon Sprott, Chris Sainty</Authors>
-    <Company>Liquid Technologies</Company>
-    <Copyright>Copyright 2020 (c) Liquid Technologies. All rights reserved.</Copyright>
+    <Authors>Simon Sprott</Authors>
+    <Company>Liquid Technologies Ltd</Company>
+    <Copyright>Copyright 2019 (c) Liquid Technologies. All rights reserved.</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/LiquidTechnologies/ModalDialog</PackageProjectUrl>
-    <!--<PackageIcon>https://avatars1.githubusercontent.com/u/39194025</PackageIcon>-->
-    <RepositoryUrl>https://github.com/LiquidTechnologies/ModalDialog</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/LiquidTechnologies/blazor-modal-dialog</PackageProjectUrl>
+    <PackageIcon>blazor-modal-dialog.png</PackageIcon>
+    <RepositoryUrl>https://github.com/LiquidTechnologies/blazor-modal-dialog</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor Razor Components Modal Dialogue MessageBox</PackageTags>
-    <Description>A JavaScript free modal dialog library for Blazor and Razor Components applications. Provides Async methods allowing dialogs to be built into the logic flow of an application. Allowes nested dialogs (i.e. a dialog can open a child dialog). Simple MessageBox function for getting simple user feedback.</Description>
+    <Description>Provides Modal Dialog and MessageBox support for Blazor (WebAssembly/Server). Provides Async methods allowing dialogs to be built into the logic flow of an application. Allowes nested dialogs (i.e. a dialog can open a child dialog). Simple MessageBox function for getting simple user feedback.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.3.0</Version>
+    <Version>0.9.0</Version>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>LiquidOpenSourcePublicKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +33,13 @@
     <EmbeddedResource Include="wwwroot\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
     <EmbeddedResource Include="wwwroot\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
     <EmbeddedResource Include="wwwroot\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\blazor-modal-dialog.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

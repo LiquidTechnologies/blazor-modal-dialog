@@ -1,7 +1,7 @@
 ﻿using LiquidTechnologies.Blazor.ModalDialog.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace LiquidTechnologies.Blazor.ModalDialog
 {
     public static class ServiceCollectionExtensions
     {

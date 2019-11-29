@@ -10,6 +10,23 @@ namespace LiquidTechnologies.Blazor.ModalDialog.Services
     {
         IEnumerable<ModalDialogModel> ModalDialogFrames { get; }
 
+        /// <summary>
+        /// Shows a modal dialog built from the specified component type <typeparamref name="TBlazorComponent"/>.
+        /// </summary>
+        /// <typeparam name="TBlazorComponent">Type of the Blazor component to display.</typeparam>
+        /// <param name="title">Modal Dialog title</param>
+        /// <param name="options">Options to configure the Modal Dialog.</param>
+        /// <param name="parameters">
+        /// Key/Value collection of parameters to pass to Blazor component being displayed.
+        /// These are accessible within the Blazor Components via a cascading value i.e.
+        /// <code>
+        /// [CascadingParameter] ModalDialogParameters Parameters { get; set; }
+        /// </code>
+        /// </param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// </remarks>
         Task<ModalDialogResult> ShowDialogAsync<TBlazorComponent>(string title, ModalDialogOptions options = null, ModalDialogParameters parameters = null) where TBlazorComponent : ComponentBase;
         Task<ModalDialogResult> ShowDialogAsync(Type dialogComponentType, string title, ModalDialogOptions options = null, ModalDialogParameters parameters = null);
 
@@ -22,11 +39,3 @@ namespace LiquidTechnologies.Blazor.ModalDialog.Services
 }
 
 
-/// <summary>
-/// Shows the modal for the specified component type using the specified <paramref name="title"/>
-/// and the specified <paramref name="parameters"/> and settings a custom modal <paramref name="options"/>
-/// </summary>
-/// <typeparam name="T">Type of component to display.</typeparam>
-/// <param name="title">Modal title.</param>
-/// <param name="parameters">Key/Value collection of parameters to pass to component being displayed.</param>
-/// <param name="options">Options to configure the modal.</param>

@@ -4,97 +4,61 @@ using System.Text;
 
 namespace LiquidTechnologies.Blazor.ModalDialog
 {
-    /// <include file='doc\DialogResult.uex' path='docs/doc[@for="DialogResult"]/*' />
-    /// <devdoc>
-    ///    <para>
+    ///    <summary>
     ///       Specifies identifiers to
     ///       indicate the return value of a dialog box.
-    ///    </para>
-    /// </devdoc>
+    ///    </summary>
     public enum MessageBoxDialogResult
     {
-        /// <include file='doc\DialogResult.uex' path='docs/doc[@for="DialogResult.None"]/*' />
-        /// <devdoc>
-        ///    <para>
-        ///       
+        ///    <summary>
         ///       Nothing is returned from the dialog box. This
         ///       means that the modal dialog continues running.
-        ///       
-        ///    </para>
-        /// </devdoc>
+        ///    </summary>
         None = 0,
 
-        /// <include file='doc\DialogResult.uex' path='docs/doc[@for="DialogResult.OK"]/*' />
-        /// <devdoc>
-        ///    <para>
+        ///    <summary>
         ///       The
         ///       dialog box return value is
         ///       OK (usually sent from a button labeled OK).
-        ///       
-        ///    </para>
-        /// </devdoc>
+        ///    </summary>
         OK = 1,
 
-        /// <include file='doc\DialogResult.uex' path='docs/doc[@for="DialogResult.Cancel"]/*' />
-        /// <devdoc>
-        ///    <para>
+        ///    <summary>
         ///       The
         ///       dialog box return value is Cancel (usually sent
         ///       from a button labeled Cancel).
-        ///       
-        ///    </para>
-        /// </devdoc>
+        ///    </summary>
         Cancel = 2,
 
-        /// <include file='doc\DialogResult.uex' path='docs/doc[@for="DialogResult.Abort"]/*' />
-        /// <devdoc>
-        ///    <para>
+        ///    <summary>
         ///       The dialog box return value is
         ///       Abort (usually sent from a button labeled Abort).
-        ///       
-        ///    </para>
-        /// </devdoc>
+        ///    </summary>
         Abort = 3,
 
-        /// <include file='doc\DialogResult.uex' path='docs/doc[@for="DialogResult.Retry"]/*' />
-        /// <devdoc>
-        ///    <para>
+        ///    <summary>
         ///       The dialog box return value is
         ///       Retry (usually sent from a button labeled Retry).
-        ///       
-        ///    </para>
-        /// </devdoc>
+        ///    </summary>
         Retry = 4,
 
-        /// <include file='doc\DialogResult.uex' path='docs/doc[@for="DialogResult.Ignore"]/*' />
-        /// <devdoc>
-        ///    <para>
+        ///    <summary>
         ///       The
         ///       dialog box return value is Ignore (usually sent
         ///       from a button labeled Ignore).
-        ///       
-        ///    </para>
-        /// </devdoc>
+        ///    </summary>
         Ignore = 5,
 
-        /// <include file='doc\DialogResult.uex' path='docs/doc[@for="DialogResult.Yes"]/*' />
-        /// <devdoc>
-        ///    <para>
+        ///    <summary>
         ///       The dialog box return value is
         ///       Yes (usually sent from a button labeled Yes).
-        ///       
-        ///    </para>
-        /// </devdoc>
+        ///    </summary>
         Yes = 6,
 
-        /// <include file='doc\DialogResult.uex' path='docs/doc[@for="DialogResult.No"]/*' />
-        /// <devdoc>
-        ///    <para>
+        ///    <summary>
         ///       The dialog box return value is
         ///       No (usually sent from a button labeled No).
-        ///       
-        ///    </para>
-        /// </devdoc>
+        ///    </summary>
         No = 7,
 
     }

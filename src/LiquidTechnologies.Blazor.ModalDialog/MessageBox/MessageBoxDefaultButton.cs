@@ -6,6 +6,9 @@ namespace LiquidTechnologies.Blazor.ModalDialog
 {
     public enum MessageBoxDefaultButton
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Button1,
         Button2,
         Button3,

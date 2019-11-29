@@ -1,3 +1,4 @@
+using LiquidTechnologies.Blazor.ModalDialog;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
