@@ -50,7 +50,7 @@ namespace LiquidTechnologies.Blazor.ModalDialog.Services
             parameters.Set("MessageBoxButtons", buttons);
             parameters.Set("MessageBoxDefaultButton", defaultButton);
 
-            ModalDialogResult result = await ShowDialogAsync<Pages.MessageBoxForm>(title, options, parameters);
+            ModalDialogResult result = await ShowDialogAsync<LiquidTechnologies.Blazor.ModalDialog.Components.MessageBoxForm>(title, options, parameters);
             if (result.Success == false)
             {
                 Debug.Assert(buttons != MessageBoxButtons.YesNo && buttons != MessageBoxButtons.AbortRetryIgnore, "Should not be able dismiss message boxes with no cancel (except OK)");
