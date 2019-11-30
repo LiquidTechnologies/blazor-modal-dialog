@@ -1,0 +1,25 @@
+name: Build And Publish Nuget
+
+on: 
+  release:
+    types:[published]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108
+    - name: Build with dotnet
+      run: dotnet build --configuration Release src/LiquidTechnologies.Blazor.ModalDialog/LiquidTechnologies.Blazor.ModalDialog.csproj
+    - name: Package Release
+      run: |  
+        cd src/LiquidTechnologies.Blazor.ModalDialog
+        dotnet pack -c Release -o out
+    - name: Publish Nuget to registry
+      run: dotnet nuget push .\src\LiquidTechnologies.Blazor.ModalDialog\out\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://www.nuget.org/api/v2/package
