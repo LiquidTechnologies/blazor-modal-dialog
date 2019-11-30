@@ -30,7 +30,7 @@ namespace LiquidTechnologies.Blazor.ModalDialog.Services
         Task<ModalDialogResult> ShowDialogAsync<TBlazorComponent>(string title, ModalDialogOptions options = null, ModalDialogParameters parameters = null) where TBlazorComponent : ComponentBase;
         Task<ModalDialogResult> ShowDialogAsync(Type dialogComponentType, string title, ModalDialogOptions options = null, ModalDialogParameters parameters = null);
 
-        Task<MessageBoxDialogResult> ShowMessageBox(string title, string message, MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button1);
+        Task<MessageBoxDialogResult> ShowMessageBoxAsync(string title, string message, MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button1);
 
         void Close(bool success, ModalDialogParameters returnParameters = null);
 

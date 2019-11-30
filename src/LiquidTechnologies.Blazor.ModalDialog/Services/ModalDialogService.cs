@@ -36,7 +36,7 @@ namespace LiquidTechnologies.Blazor.ModalDialog.Services
             return newDialogWindow.Task;
         }
 
-        public async Task<MessageBoxDialogResult> ShowMessageBox(string title, string message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        public async Task<MessageBoxDialogResult> ShowMessageBoxAsync(string title, string message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
         {
             ModalDialogOptions options = new ModalDialogOptions();
             if (buttons == MessageBoxButtons.YesNo || buttons == MessageBoxButtons.AbortRetryIgnore)

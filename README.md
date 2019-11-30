@@ -2,10 +2,6 @@
 
 A simple and customizable Modal Dialog and MessageBox implementation for [Blazor](https://blazor.net)
 
-[![Build Status](https://dev.azure.com/LiquidTechnologies/Blazor/ModalDialog/_apis/build/status/LiquidTechnologies.Blazor.ModalDialog?branchName=master)](https://dev.azure.com/LiquidTechnologies/Blazor/ModalDialog/_build/latest?definitionId=4&branchName=master)
-
-![Nuget](https://img.shields.io/nuget/v/liquidtechnologies.blazor.modaldialog.svg)
-
 ![Screenshot of the component in action](screenshot.png)
 
 ## Summary
@@ -78,7 +74,7 @@ Add the following line to the `head` tag of your `_Host.cshtml` (Blazor Server a
 
 ## Usage
 
-### Displaying the modal
+### Showing a Dialog and getting the return value
 
 In order to show the modal, you have to inject the `IModalDialogService` into the component or service you want to invoke the modal. 
 You can then call the `ShowDialogAsync` method passing in the title for the modal and the type of the component you want the modal to display.
@@ -103,14 +99,12 @@ The data the user submitted in the form can then be read and used (or ignored if
     }
 }
 ```
-Notice the function `SignUpBtn_Clicked` is `async`. The returned Task<ModalDialogResult> is only completed when the SignUpForm has been closed, allowing for more readable code.
+**Note** *the function `SignUpBtn_Clicked` is `async`. The Task<ModalDialogResult> returned from `ModalDialog.ShowDialogAsync` is only completed when the SignUpForm has been closed, allowing the code to make use of the return values from the Modal Dialog.*
 
-### Passing Parameters
+### Passing Arguments to a Dialog
 
 If you need to pass values to the component you are displaying in the modal dialog, then you can use the `ModalDialogParameters` object. 
 Any component which is displayed in the modal has access to this object as a `[CascadingParameter]`.
-
-#### Index Component
 
 ```html
 @page "/"
@@ -139,7 +133,7 @@ Any component which is displayed in the modal has access to this object as a `[C
 }
 ```
 
-#### EditMovie Component
+### Options
 
 ```html
 @inject IMovieService MovieService
@@ -195,7 +189,7 @@ Any component which is displayed in the modal has access to this object as a `[C
 }
 ```
 
-### Customizing the modal
+### Options
 
 The modal dialogs can be customized to fit a wide variety of uses. These options can be set using the `ModalDialogOptions` object passed into `ShowDialogAsync`.
 
@@ -275,5 +269,33 @@ The following positioning styles are available out of the box: `liquid-modal-dia
 }
 ```
 
+### Nested Modal Dialogs
+
+When a Modal Dialog is displayed it is possible to display another Modal Dialog over the top. there is no limit to the number of dialogs that can be displayed in this way (MessageBoxes can also be used while Modal Dialogs are shown).
+
+![Screenshot of the nested Modal Dialogs](NestedModalDialogsScreenShot.png)
 
 ### MessageBoxes
+
+For convenience a set of Windows style Message Box's can be created using the `ShowMessageBoxAsync` method. These work in the same ways as the standard Windows MessageBox (except it doesn't have an icon). 
+
+`Task<MessageBoxDialogResult> IModalDialogService.ShowMessageBoxAsync(string title, string message, MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button1)`
+
+They can be used as 
+
+```csharp
+async void DeleteAllFilesButton_Clicked()
+{
+    MessageBoxDialogResult result = await ModalDialog.ShowMessageBoxAsync("Confirm Delete", "Are you sure you want to delete all the files?", MessageBoxButtons.YesNo, MessageBoxDefaultButton.Button2);
+    if (result == MessageBoxDialogResult.No)
+        return;
+
+    DeleteAllFiles();
+}
+```
+
+
+![Screenshot of the MessageBox](MessageBoxScreenShot.png)
+
+
+
