@@ -23,7 +23,6 @@
 
     [CascadingParameter] ModalDialogParameters Parameters { get; set; }
 
-    bool ShowForm { get; set; } = true;
     string FirstName { get; set; }
     string LastName { get; set; }
     int FormId { get; set; }
@@ -35,19 +34,27 @@
 
     async void Ok_Clicked()
     {
-        if (string.IsNullOrWhiteSpace(FirstName) && string.IsNullOrWhiteSpace(LastName))
+        try
         {
-            ModalDialogResult result = await ModalDialogService.ShowDialogAsync<ValidationErrorForm>("Validation Errors");
-            if (result.Success == false)
-                ModalDialogService.Close(false);
+            if (string.IsNullOrWhiteSpace(FirstName) && string.IsNullOrWhiteSpace(LastName))
+            {
+                ModalDialogResult result = await ModalDialogService.ShowDialogAsync<ValidationErrorForm>("Validation Errors");
+                if (result.Success == false)
+                    ModalDialogService.Close(false);
+            }
+            else
+            {
+                ModalDialogParameters resultParameters = new ModalDialogParameters();
+                resultParameters.Set("FirstName", FirstName);
+                resultParameters.Set("LastName", LastName);
+                resultParameters.Set("FullName", FirstName + " " + LastName);
+                ModalDialogService.Close(true, resultParameters);
+            }
         }
-        else
+        catch (Exception ex)
         {
-            ModalDialogParameters resultParameters = new ModalDialogParameters();
-            resultParameters.Set("FirstName", FirstName);
-            resultParameters.Set("LastName", LastName);
-            resultParameters.Set("FullName", FirstName + " " + LastName);
-            ModalDialogService.Close(true, resultParameters);
+            // pass the exception back to the ShowDialogAsync call that opened the Dialog
+            ModalDialogService.Close(ex);
         }
     }
 

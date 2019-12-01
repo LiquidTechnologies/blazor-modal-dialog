@@ -38,6 +38,9 @@ namespace LiquidTechnologies.Blazor.ModalDialog.Services
 
         public async Task<MessageBoxDialogResult> ShowMessageBoxAsync(string title, string message, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
         {
+            if (buttons == MessageBoxButtons.OK && defaultButton != MessageBoxDefaultButton.Button1) throw new ArgumentException("Must be Button 1", nameof(defaultButton));
+            if ((buttons == MessageBoxButtons.OKCancel || buttons == MessageBoxButtons.RetryCancel || buttons == MessageBoxButtons.YesNo) && defaultButton == MessageBoxDefaultButton.Button3) throw new ArgumentException("Must be Button 1 or 2", nameof(defaultButton));
+
             ModalDialogOptions options = new ModalDialogOptions();
             if (buttons == MessageBoxButtons.YesNo || buttons == MessageBoxButtons.AbortRetryIgnore)
             {
@@ -72,6 +75,13 @@ namespace LiquidTechnologies.Blazor.ModalDialog.Services
 
             ModalDialogModel closingDialogWindow = _dialogs.Pop();
             closingDialogWindow.TaskSource.SetResult(new ModalDialogResult(success, returnParameters));
+            OnChanged();
+        }
+
+        public void Close(Exception exception)
+        {
+            ModalDialogModel closingDialogWindow = _dialogs.Pop();
+            closingDialogWindow.TaskSource.SetException(exception);
             OnChanged();
         }
 

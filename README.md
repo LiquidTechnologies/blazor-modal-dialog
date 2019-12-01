@@ -269,6 +269,43 @@ The following positioning styles are available out of the box: `liquid-modal-dia
 }
 ```
 
+### Error Handling
+
+```csharp
+// Opeing the Dialog
+try
+{
+    ModalDialogResult result = await ModalDialog.ShowDialogAsync<SignUpForm>("Sign Up Form");
+    if (result.Success)
+        Message = "New User Created : " + result.ReturnParameters.Get<int>("UserID");
+}
+catch(Exception ex)
+{
+    // Handle Exception thrown from ShowDialogAsync
+}
+
+...
+
+// In the Blazor Component
+async void Ok_Clicked()
+{
+    try
+    {
+        int newUserID = CreateUser(FirstName, LastName);
+
+        ModalDialogParameters resultParameters = new ModalDialogParameters();
+        resultParameters.Set("UserID", newUserID);
+        ModalDialogService.Close(true, resultParameters);
+    }
+    catch (Exception ex)
+    {
+        // pass the exception back to the ShowDialogAsync call that opened the Dialog
+        ModalDialogService.Close(ex);
+    }
+}
+
+```
+
 ### Nested Modal Dialogs
 
 When a Modal Dialog is displayed it is possible to display another Modal Dialog over the top. there is no limit to the number of dialogs that can be displayed in this way (MessageBoxes can also be used while Modal Dialogs are shown).

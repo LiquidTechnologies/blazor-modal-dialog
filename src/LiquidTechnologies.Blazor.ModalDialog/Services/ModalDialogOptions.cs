@@ -6,10 +6,27 @@ namespace LiquidTechnologies.Blazor.ModalDialog.Services
 {
     public class ModalDialogOptions
     {
+        /// <summary>
+        /// The position of the Modal Dialog
+        /// </summary>
+        /// <seealso cref="ModalDialogPositionOptions"/>
         public string Position { get; set; } = ModalDialogPositionOptions.Default;
+        /// <summary>
+        /// The css style applied to the modal dialog
+        /// </summary>
+        /// <seealso cref="ModalDialogStyleOptions"/>
         public string Style { get; set; } = ModalDialogStyleOptions.Default;
+        /// <summary>
+        /// The title of the modal dialog
+        /// </summary>
         public string Title { get; set; }
+        /// <summary>
+        /// Indicates of the dialog should show a Close X in the top right
+        /// </summary>
         public bool ShowCloseButton { get; set; } = true;
+        /// <summary>
+        /// Indicates of the dialog should automatically Close is a click is performed outside of the dialog (in the background)
+        /// </summary>
         public bool BackgroundClickToClose { get; set; } = true;
 //        public bool EscapeKeyToClose { get; set; } = true;
     }

@@ -16,7 +16,7 @@
     <PackageTags>Blazor Razor Components Modal Dialogue MessageBox</PackageTags>
     <Description>Provides Modal Dialog and MessageBox support for Blazor (WebAssembly/Server). Provides Async methods allowing dialogs to be built into the logic flow of an application. Allowes nested dialogs (i.e. a dialog can open a child dialog). Simple MessageBox function for getting simple user feedback.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.9.0</Version>
+    <Version>0.9.1</Version>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>LiquidOpenSourcePublicKey.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -33,6 +33,13 @@
     <EmbeddedResource Include="wwwroot\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
     <EmbeddedResource Include="wwwroot\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
     <EmbeddedResource Include="wwwroot\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="out\**" />
+    <Content Remove="out\**" />
+    <EmbeddedResource Remove="out\**" />
+    <None Remove="out\**" />
   </ItemGroup>
 
   <ItemGroup>
