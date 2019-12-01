@@ -13,10 +13,10 @@
     <PackageIcon>blazor-modal-dialog.png</PackageIcon>
     <RepositoryUrl>https://github.com/LiquidTechnologies/blazor-modal-dialog</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Blazor Razor Components Modal Dialogue MessageBox</PackageTags>
-    <Description>Provides Modal Dialog and MessageBox support for Blazor (WebAssembly/Server). Provides Async methods allowing dialogs to be built into the logic flow of an application. Allowes nested dialogs (i.e. a dialog can open a child dialog). Simple MessageBox function for getting simple user feedback.</Description>
+    <PackageTags>Blazor Razor Components Modal Dialogue MessageBox Async Dialog</PackageTags>
+    <Description>Turns a Blazor Component into a Modal Dialog. Async methods allow dialogs to return values. Allows nested dialogs (i.e. a dialog can open a child dialog). Supports Blazor WebAssembly and Server. Includes Windows style Message Box for quick user feedback.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.9.1</Version>
+    <Version>0.9.2</Version>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>LiquidOpenSourcePublicKey.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
