@@ -1,0 +1,106 @@
+﻿@page "/datainputformdemo"
+@inject IModalDialogService ModalService
+
+<h1>Liquid Technologies Modal Dialog Sample</h1>
+
+<hr class="mb-5" />
+
+<p>
+    This example also show how to quickly create data entry forms.
+</p>
+
+
+
+<table>
+    <tr>
+        <td>Name</td>
+        <td>@Name</td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        <td>@Gender</td>
+    </tr>
+    <tr>
+        <td>Age</td>
+        <td>@Age</td>
+    </tr>
+    <tr>
+        <td>Married</td>
+        <td>@Married</td>
+    </tr>
+</table>
+
+
+<button class="btn btn-primary" @onclick="@Edit_Clicked">Edit Data</button>
+
+<hr class="mb-5" />
+
+<h3>Sample Code</h3>
+<pre>
+@@inject IModalDialogService ModalService
+
+...
+
+@@code 
+{
+    enum GenderType { Male, Female }
+
+    private string Name = "Fred";
+    private GenderType Gender = GenderType.Male;
+    private int Age = 25;
+    private bool Married = false;
+
+
+    async void Edit_Clicked()
+    {
+        ModalDataInputForm frm = new ModalDataInputForm("Edit Data", "A description of the data");
+
+        var nameFld = frm.AddStringField("Name", "First Name", this.Name, "the users first name");
+        var genderFld = frm.AddEnumField&lt;GenderType&gt;("Gender", "Sex", this.Gender, "the users gender");
+        var ageFld = frm.AddIntField("Age", "Age", this.Age, "the age of the user", min:0, max:130);
+        var marriedFld = frm.AddBoolField("Married", "Is Married", this.Married, "is the user married");
+
+        if (await frm.ShowAsync(ModalService))
+        {
+            this.Name = nameFld.Value;
+            this.Gender = genderFld.Value;
+            this.Age = ageFld.Value;
+            this.Married = marriedFld.Value;
+            StateHasChanged();
+        }
+    }
+}
+</pre>
+
+@code {
+
+    enum GenderType { Male, Female }
+
+    private string Name = "Fred";
+    private GenderType Gender = GenderType.Male;
+    private int Age = 25;
+    private bool Married = false;
+
+
+    async void Edit_Clicked()
+    {
+        ModalDataInputForm frm = new ModalDataInputForm("Edit Data", "A description of the data");
+
+        var nameFld = frm.AddStringField("Name", "First Name", this.Name, "the users first name");
+        var genderFld = frm.AddEnumField<GenderType>("Gender", "Sex", this.Gender, "the users gender");
+        var ageFld = frm.AddIntField("Age", "Age", this.Age, "the age of the user", min: 0, max: 130);
+        var marriedFld = frm.AddBoolField("Married", "Is Married", this.Married, "is the user married");
+
+        if (await frm.ShowAsync(ModalService))
+        {
+            this.Name = nameFld.Value;
+            this.Gender = genderFld.Value;
+            this.Age = ageFld.Value;
+            this.Married = marriedFld.Value;
+            StateHasChanged();
+        }
+    }
+}
+
+
+

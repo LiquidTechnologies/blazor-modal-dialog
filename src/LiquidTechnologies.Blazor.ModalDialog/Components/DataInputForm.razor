@@ -1,0 +1,139 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using LiquidTechnologies.Blazor.ModalDialog.Services
+
+@using Microsoft.JSInterop
+@inject NavigationManager NavigationManager
+@inject IModalDialogService ModalService
+@inject IJSRuntime JSRuntime
+
+<div class="simple-form">
+    @if (!string.IsNullOrWhiteSpace(@Form.Description))
+    {
+        <div class="form-group">
+            @Form.Description
+        </div>
+    }
+
+    @for (int fieldIndex = 0; fieldIndex < this.Form.Fields.Length; fieldIndex++)
+    {
+        var field = this.Form.Fields[fieldIndex];
+        var fieldDomID = $"liquid-data-input-field-{fieldIndex}";
+
+        @if (field is DataInputFormStringField fieldString)
+        {
+            <div class="form-group">
+                <label for="@fieldDomID">@field.Name</label>
+                <input id="@fieldDomID" @ref="DomElements[field.ID]"
+                       title="@fieldString.ToolTip" type="text" class="form-control"
+                       value="@fieldString.Value" placeholder="@fieldString.PlaceholderValue"
+                       maxlength="@(fieldString.MaxLength== -1?"maxlength":fieldString.MaxLength.ToString())"
+                       minlength="@fieldString.MinLength"
+                       @onchange="@((ui) => Values[fieldString.ID] = ui.Value.ToString())" />
+            </div>
+        }
+        else if (field is DataInputFormBoolField fieldBool)
+        {
+            <div class="form-check">
+                <input id="@fieldDomID" @ref="DomElements[field.ID]"
+                       title="@fieldBool.ToolTip" type="checkbox" class="form-check-input"
+                       checked="@fieldBool.Value"
+                       @onchange=@((ui) => Values[fieldBool.ID] = ui.Value.ToString()) />
+                <label for="@fieldDomID" class="form-check-label">@field.Name</label>
+            </div>
+        }
+        else if (field is DataInputFormIntField fieldInt)
+        {
+            <div class="form-group">
+                <label for="@fieldDomID">@field.Name</label>
+                <input id="@fieldDomID" @ref="DomElements[field.ID]"
+                       title="@fieldInt.ToolTip" type="number" class="form-control"
+                       value="@fieldInt.Value"
+                       min="@fieldInt.Min"
+                       max="@(fieldInt.Max == -1?null:fieldInt.Max.ToString())"
+                       @onchange=@((ui) => Values[fieldInt.ID] = ui.Value.ToString()) />
+            </div>
+        }
+        else if (field is DataInputFormEnumField fieldEnum)
+        {
+            <div class="form-group">
+                <label for="@fieldDomID">@field.Name</label>
+                <select id="@fieldDomID" @ref="DomElements[field.ID]"
+                        title="@fieldEnum.ToolTip" class="form-control"
+                        @onchange=@((ui) => Values[fieldEnum.ID] = ui.Value.ToString())>
+                    @foreach (var enumNameValue in fieldEnum.EnumValues)
+                    {
+                        <option value="@enumNameValue.Item1" selected="@(enumNameValue.Item1 == fieldEnum.Value)">@enumNameValue.Item2</option>
+                    }
+                </select>
+            </div>
+        }
+    }
+
+    <div class="form-group float-right">
+        <button @onclick="OK_Clicked" class="btn btn-primary">OK</button>
+        <button @onclick="Cancel_Clicked" class="btn">Cancel</button>
+    </div>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    ModalDialogParameters Parameters { get; set; }
+
+    private ModalDataInputForm Form { get { return Parameters.Get<ModalDataInputForm>("Form"); } }
+
+    private Dictionary<string, string> Values { get; } = new Dictionary<string, string>();
+    private Dictionary<string, ElementReference> DomElements = new Dictionary<string, ElementReference>();
+    private DataInputFormField FieldWithFirstError = null;
+
+    protected override void OnInitialized()
+    {
+        // gather the initial values
+        foreach (var field in Form.Fields)
+        {
+            Values[field.ID] = field.StringValue;
+        }
+    }
+
+    async void OK_Clicked()
+    {
+        // copy all the values back into the DataInputFormField's
+        foreach (var field in this.Form.Fields)
+        {
+            try
+            {
+                field.StringValue = Values[field.ID];
+            }
+            catch (Exception ex)
+            {
+                await ModalService.ShowMessageBoxAsync("Error", ex.Message, Blazor.ModalDialog.MessageBoxButtons.OK);
+                await JSRuntime.Focus(DomElements[field.ID]);
+                FieldWithFirstError = field;
+                return;
+            }
+        }
+
+        // validate the fields
+        foreach (var field in this.Form.Fields)
+        {
+            try
+            {
+                field.Validate(this.Form);
+            }
+            catch (Exception ex)
+            {
+                await ModalService.ShowMessageBoxAsync("Error", ex.Message, Blazor.ModalDialog.MessageBoxButtons.OK);
+                await JSRuntime.Focus(DomElements[field.ID]);
+                FieldWithFirstError = field;
+                return;
+            }
+        }
+
+        ModalService.Close(true);
+    }
+
+    void Cancel_Clicked()
+    {
+        ModalService.Close(false);
+    }
+}

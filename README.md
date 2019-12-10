@@ -12,10 +12,10 @@ A simple and customizable Modal Dialog and MessageBox implementation for [Blazor
 ```    
     ModalDialogResult result = await ModalDialog.ShowDialogAsync<ConfirmationForm>("Are You Sure");
     if (result.Success)
-        DeltetEverything();
+        DeleteEverything();
 ```
 * Can be nested. i.e. a Modal Dialog can create child Modal Dialogs.
-* Include Simple Winforms MessageBox's
+* Includes Simple Windows style MessageBox's
  
 
 
@@ -69,7 +69,7 @@ Add the `<ModalDialogContainer />` tag into your applications *MainLayout.razor*
 Add the following line to the `head` tag of your `_Host.cshtml` (Blazor Server app).
 
 ```html
-<link href="_content/LiquidTechnologies.Blazor.ModalDialog/liquid.modal-dialog.css" rel="stylesheet" />
+<link href="_content/LiquidTechnologies.Blazor.ModalDialog/liquid-modal-dialog.css" rel="stylesheet" />
 ```
 
 ## Usage
@@ -336,3 +336,68 @@ async void DeleteAllFilesButton_Clicked()
 
 
 
+### Simple Data Input Form
+
+The ModalDataInputForm makes it possible to construct simple data input forms for capturing and editing
+basic information without the need to create a specific razor component to handle it.
+
+Simply create a ModalDataInputForm instance, and add the fields you need to it. Then call ShowAsync, 
+when the user submits the form the data is returned in the fields you just created.
+
+![Screenshot of the Blazor Data Input Form](DataInputFormScreenShot.png)
+
+#### Features
+* Field Type Support
+   * String
+   * Integer
+   * Boolean
+   * Enumerations
+* Field properties
+   * custom validation function
+   * min/max length
+   * min/max value
+   * auto trucate
+   * auto trim
+   * custom validation function
+* Validation
+  * Field level
+  * Cross Field validation
+
+#### Sample Code
+
+```csharp
+
+@@inject IModalDialogService ModalService
+
+...
+
+@@code 
+{
+    enum GenderType { Male, Female }
+
+    private string Name = "Fred";
+    private GenderType Gender = GenderType.Male;
+    private int Age = 25;
+    private bool Married = false;
+
+
+    async void Edit_Clicked()
+    {
+        ModalDataInputForm frm = new ModalDataInputForm("Edit Data", "A description of the data");
+
+        var nameFld = frm.AddStringField("Name", "First Name", this.Name, "the users first name");
+        var genderFld = frm.AddEnumField<GenderType>("Gender", "Sex", this.Gender, "the users gender");
+        var ageFld = frm.AddIntField("Age", "Age", this.Age, "the age of the user", min:0, max:130);
+        var marriedFld = frm.AddBoolField("Married", "Is Married", this.Married, "is the user married");
+
+        if (await frm.ShowAsync(ModalService))
+        {
+            this.Name = nameFld.Value;
+            this.Gender = genderFld.Value;
+            this.Age = ageFld.Value;
+            this.Married = marriedFld.Value;
+            StateHasChanged();
+        }
+    }
+}
+```

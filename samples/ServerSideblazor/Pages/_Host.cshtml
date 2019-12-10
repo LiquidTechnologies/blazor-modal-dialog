@@ -10,12 +10,13 @@
     <title>ServerSideblazor</title>
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-    <link href="_content/LiquidTechnologies.Blazor.ModalDialog/liquid.modal-dialog.css" rel="stylesheet" />
+    <link href="_content/LiquidTechnologies.Blazor.ModalDialog/liquid-modal-dialog.css" rel="stylesheet" />
     <link href="css/site.css" rel="stylesheet" />
 </head>
 <body>
     <app>@(await Html.RenderComponentAsync<App>(RenderMode.Server))</app>
 
     <script src="_framework/blazor.server.js"></script>
+    <script src="_content/LiquidTechnologies.Blazor.ModalDialog/liquid-modal-dialog.js"></script>
 </body>
 </html>
