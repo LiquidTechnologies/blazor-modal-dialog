@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LiquidTechnologies.Blazor.ModalDialog {
+namespace Blazor.ModalDialog {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace LiquidTechnologies.Blazor.ModalDialog {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LiquidTechnologies.Blazor.ModalDialog.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Blazor.ModalDialog.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

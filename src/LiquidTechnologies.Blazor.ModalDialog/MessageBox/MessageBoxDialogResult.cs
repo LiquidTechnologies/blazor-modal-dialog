@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LiquidTechnologies.Blazor.ModalDialog
+namespace Blazor.ModalDialog
 {
     ///    <summary>
     ///       Specifies identifiers to

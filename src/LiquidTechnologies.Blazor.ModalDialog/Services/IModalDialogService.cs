@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LiquidTechnologies.Blazor.ModalDialog.Services
+namespace Blazor.ModalDialog
 {
     public interface IModalDialogService
     {

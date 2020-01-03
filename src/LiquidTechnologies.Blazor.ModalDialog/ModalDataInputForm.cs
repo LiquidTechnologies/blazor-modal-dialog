@@ -1,11 +1,11 @@
-﻿using LiquidTechnologies.Blazor.ModalDialog.Services;
+﻿using Blazor.ModalDialog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LiquidTechnologies.Blazor.ModalDialog
+namespace Blazor.ModalDialog
 {
     public class ModalDataInputForm
     {

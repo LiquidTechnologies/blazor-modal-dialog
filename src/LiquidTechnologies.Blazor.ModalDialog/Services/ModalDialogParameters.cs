@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LiquidTechnologies.Blazor.ModalDialog.Services
+namespace Blazor.ModalDialog
 {
     public class ModalDialogParameters : Dictionary<string, object>
     {

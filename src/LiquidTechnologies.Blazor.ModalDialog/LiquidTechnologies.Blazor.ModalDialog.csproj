@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
-    <RootNamespace>LiquidTechnologies.Blazor.ModalDialog</RootNamespace>
+    <RootNamespace>Blazor.ModalDialog</RootNamespace>
     
     <Authors>Simon Sprott</Authors>
     <Company>Liquid Technologies Ltd</Company>
@@ -16,7 +16,7 @@
     <PackageTags>Blazor Razor Components Modal Dialogue MessageBox Async Dialog</PackageTags>
     <Description>Turns a Blazor Component into a Modal Dialog. Async methods allow dialogs to return values. Allows nested dialogs (i.e. a dialog can open a child dialog). Supports Blazor WebAssembly and Server. Includes Windows style Message Box for quick user feedback.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.9.3</Version>
+    <Version>0.9.4</Version>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>LiquidOpenSourcePublicKey.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -47,6 +47,21 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

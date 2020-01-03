@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Components.Web
 @implements IDisposable
-@inject LiquidTechnologies.Blazor.ModalDialog.Services.IModalDialogService DialogService
+@inject Blazor.ModalDialog.IModalDialogService DialogService
 
-@foreach (LiquidTechnologies.Blazor.ModalDialog.Services.ModalDialogModel modalDialogEntry in DialogService.ModalDialogFrames.Reverse())
+@foreach (Blazor.ModalDialog.ModalDialogModel modalDialogEntry in DialogService.ModalDialogFrames.Reverse())
 {
     <ModalDialogFrameView @key="modalDialogEntry"
                           Title="@modalDialogEntry.Title"

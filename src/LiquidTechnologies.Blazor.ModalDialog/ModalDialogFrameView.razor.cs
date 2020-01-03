@@ -1,10 +1,10 @@
-﻿using LiquidTechnologies.Blazor.ModalDialog.Services;
+﻿using Blazor.ModalDialog;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Diagnostics;
 
-namespace LiquidTechnologies.Blazor.ModalDialog
+namespace Blazor.ModalDialog
 {
     public class ModalDialogFrameViewBase : ComponentBase
     {

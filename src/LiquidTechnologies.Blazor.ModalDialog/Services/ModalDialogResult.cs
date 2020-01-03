@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LiquidTechnologies.Blazor.ModalDialog.Services
+namespace Blazor.ModalDialog
 {
     /// <summary>
     /// The results returned from a Modal Dialog

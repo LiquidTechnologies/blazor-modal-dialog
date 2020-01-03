@@ -64,13 +64,20 @@ Add the following to your *_Imports.razor*
 
 Add the `<ModalDialogContainer />` tag into your applications *MainLayout.razor*.
 
-### 4. Add reference to style sheet
+### 4. Add reference to stylesheet and .js
 
 Add the following line to the `head` tag of your `_Host.cshtml` (Blazor Server app).
 
+In the `<head>`
 ```html
 <link href="_content/LiquidTechnologies.Blazor.ModalDialog/liquid-modal-dialog.css" rel="stylesheet" />
 ```
+At the bottom of the `<body>`
+```html
+<script src="_content/LiquidTechnologies.Blazor.ModalDialog/liquid-modal-dialog.js"></script>
+```
+
+
 
 ## Usage
 

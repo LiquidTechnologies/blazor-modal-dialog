@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LiquidTechnologies.Blazor.ModalDialog.Services
+namespace Blazor.ModalDialog
 {
     public class ModalDialogService : IModalDialogService
     {
@@ -53,7 +53,7 @@ namespace LiquidTechnologies.Blazor.ModalDialog.Services
             parameters.Set("MessageBoxButtons", buttons);
             parameters.Set("MessageBoxDefaultButton", defaultButton);
 
-            ModalDialogResult result = await ShowDialogAsync<LiquidTechnologies.Blazor.ModalDialog.Components.MessageBoxForm>(title, options, parameters);
+            ModalDialogResult result = await ShowDialogAsync<Blazor.ModalDialog.Components.MessageBoxForm>(title, options, parameters);
             if (result.Success == false)
             {
                 Debug.Assert(buttons != MessageBoxButtons.YesNo && buttons != MessageBoxButtons.AbortRetryIgnore, "Should not be able dismiss message boxes with no cancel (except OK)");

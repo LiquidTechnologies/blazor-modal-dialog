@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LiquidTechnologies.Blazor.ModalDialog
+namespace Blazor.ModalDialog
 {
     internal static class LiquidModalDialogJsInterop
     {
