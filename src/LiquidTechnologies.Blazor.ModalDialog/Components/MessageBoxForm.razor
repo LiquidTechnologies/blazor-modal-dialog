@@ -44,6 +44,8 @@
                 case MessageBoxButtons.RetryCancel: return Resources.MessageBoxButtons_Retry;
                 case MessageBoxButtons.YesNo: return Resources.MessageBoxButtons_Yes;
                 case MessageBoxButtons.YesNoCancel: return Resources.MessageBoxButtons_Yes;
+                case MessageBoxButtons.SaveDiscard: return Resources.MessageBoxButtons_Save;
+                case MessageBoxButtons.SaveDiscardCancel: return Resources.MessageBoxButtons_Save;
                 default:
                     throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
             }
@@ -58,6 +60,8 @@
                 case MessageBoxButtons.RetryCancel: return Resources.MessageBoxButtons_Cancel;
                 case MessageBoxButtons.YesNo: return Resources.MessageBoxButtons_No;
                 case MessageBoxButtons.YesNoCancel: return Resources.MessageBoxButtons_No;
+                case MessageBoxButtons.SaveDiscard: return Resources.MessageBoxButtons_Discard;
+                case MessageBoxButtons.SaveDiscardCancel: return Resources.MessageBoxButtons_Discard;
                 default:
                     throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
             }
@@ -72,6 +76,8 @@
                 case MessageBoxButtons.RetryCancel: return null;
                 case MessageBoxButtons.YesNo: return null;
                 case MessageBoxButtons.YesNoCancel: return Resources.MessageBoxButtons_Cancel;
+                case MessageBoxButtons.SaveDiscard: return null;
+                case MessageBoxButtons.SaveDiscardCancel: return Resources.MessageBoxButtons_Cancel;
                 default:
                     throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
             }
@@ -110,6 +116,8 @@
             case MessageBoxButtons.RetryCancel: dialogResult = MessageBoxDialogResult.Retry; break;
             case MessageBoxButtons.YesNo: dialogResult = MessageBoxDialogResult.Yes; break;
             case MessageBoxButtons.YesNoCancel: dialogResult = MessageBoxDialogResult.Yes; break;
+            case MessageBoxButtons.SaveDiscard: dialogResult = MessageBoxDialogResult.Save; break;
+            case MessageBoxButtons.SaveDiscardCancel: dialogResult = MessageBoxDialogResult.Save; break;
             default:
                 throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
         }
@@ -133,6 +141,8 @@
             case MessageBoxButtons.RetryCancel: dialogResult = MessageBoxDialogResult.Cancel; break;
             case MessageBoxButtons.YesNo: dialogResult = MessageBoxDialogResult.No; break;
             case MessageBoxButtons.YesNoCancel: dialogResult = MessageBoxDialogResult.No; break;
+            case MessageBoxButtons.SaveDiscard: dialogResult = MessageBoxDialogResult.Discard; break;
+            case MessageBoxButtons.SaveDiscardCancel: dialogResult = MessageBoxDialogResult.Discard; break;
             default:
                 throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
         }
@@ -156,6 +166,7 @@
             //case MessageBoxButtons.RetryCancel:
             //case MessageBoxButtons.YesNo:
             case MessageBoxButtons.YesNoCancel: dialogResult = MessageBoxDialogResult.Cancel; break;
+            case MessageBoxButtons.SaveDiscardCancel: dialogResult = MessageBoxDialogResult.Cancel; break;
             default:
                 throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
         }

@@ -123,6 +123,9 @@
   <data name="MessageBoxButtons_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="MessageBoxButtons_Discard" xml:space="preserve">
+    <value>Discard</value>
+  </data>
   <data name="MessageBoxButtons_Ignore" xml:space="preserve">
     <value>Ignore</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="MessageBoxButtons_Retry" xml:space="preserve">
     <value>Retry</value>
+  </data>
+  <data name="MessageBoxButtons_Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="MessageBoxButtons_Yes" xml:space="preserve">
     <value>Yes</value>

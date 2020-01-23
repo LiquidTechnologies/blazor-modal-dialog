@@ -60,6 +60,8 @@ namespace Blazor.ModalDialog
         ///       No (usually sent from a button labeled No).
         ///    </summary>
         No = 7,
+        Save,
+        Discard,
 
     }
 }

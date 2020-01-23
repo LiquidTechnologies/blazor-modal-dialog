@@ -50,7 +50,9 @@ namespace Blazor.ModalDialog
         ///       is
         ///       constant.
         /// </summary>
-        RetryCancel = 0x00000005
+        RetryCancel = 0x00000005,
+        SaveDiscard,
+        SaveDiscardCancel,
 
     }
 }

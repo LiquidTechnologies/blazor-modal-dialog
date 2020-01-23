@@ -79,6 +79,15 @@ namespace Blazor.ModalDialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discard.
+        /// </summary>
+        internal static string MessageBoxButtons_Discard {
+            get {
+                return ResourceManager.GetString("MessageBoxButtons_Discard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignore.
         /// </summary>
         internal static string MessageBoxButtons_Ignore {
@@ -111,6 +120,15 @@ namespace Blazor.ModalDialog {
         internal static string MessageBoxButtons_Retry {
             get {
                 return ResourceManager.GetString("MessageBoxButtons_Retry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string MessageBoxButtons_Save {
+            get {
+                return ResourceManager.GetString("MessageBoxButtons_Save", resourceCulture);
             }
         }
         
