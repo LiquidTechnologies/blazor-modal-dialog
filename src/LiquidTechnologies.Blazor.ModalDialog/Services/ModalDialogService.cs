@@ -49,11 +49,11 @@ namespace Blazor.ModalDialog
             }
 
             ModalDialogParameters parameters = new ModalDialogParameters();
-            parameters.Set("MessageBoxText", message);
-            parameters.Set("MessageBoxButtons", buttons);
-            parameters.Set("MessageBoxDefaultButton", defaultButton);
+            parameters.Set(nameof(Components.MessageBoxForm.MessageText), message);
+            parameters.Set(nameof(Components.MessageBoxForm.MessageButtons), buttons);
+            parameters.Set(nameof(Components.MessageBoxForm.DefaultButton), defaultButton);
 
-            ModalDialogResult result = await ShowDialogAsync<Blazor.ModalDialog.Components.MessageBoxForm>(title, options, parameters);
+            ModalDialogResult result = await ShowDialogAsync<Components.MessageBoxForm>(title, options, parameters);
             if (result.Success == false)
             {
                 Debug.Assert(buttons != MessageBoxButtons.YesNo && buttons != MessageBoxButtons.AbortRetryIgnore, "Should not be able dismiss message boxes with no cancel (except OK)");

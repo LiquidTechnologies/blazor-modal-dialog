@@ -29,7 +29,14 @@ namespace Blazor.ModalDialog
         {
             get
             {
-                RenderFragment content = new RenderFragment(x => { x.OpenComponent(1, DialogComponentType); x.CloseComponent(); });
+                RenderFragment content = new RenderFragment(x => 
+                {
+                    int seq = 1;
+                    x.OpenComponent(seq++, DialogComponentType);
+                    foreach (var parameter in Parameters)
+                        x.AddAttribute(seq++, parameter.Key, parameter.Value);
+                    x.CloseComponent(); 
+                });
                 return content;
             }
         }

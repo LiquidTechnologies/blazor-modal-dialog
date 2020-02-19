@@ -25,18 +25,18 @@
 
 
 @code {
-
-    [CascadingParameter]
-    ModalDialogParameters Parameters { get; set; }
-
-    private string MessageText { get { return Parameters.Get<string>("MessageBoxText"); } }
+    [Parameter]
+    public string MessageText { get; set; }
+    [Parameter]
+    public MessageBoxButtons MessageButtons { get; set; }
+    [Parameter]
+    public MessageBoxDefaultButton DefaultButton { get; set; }
 
     private string GetButtonText(int buttonIndex)
     {
-        MessageBoxButtons buttons = Parameters.Get<MessageBoxButtons>("MessageBoxButtons");
         if (buttonIndex == 0)
         {
-            switch (buttons)
+            switch (MessageButtons)
             {
                 case MessageBoxButtons.AbortRetryIgnore: return Resources.MessageBoxButtons_Abort;
                 case MessageBoxButtons.OK: return Resources.MessageBoxButtons_OK;
@@ -47,12 +47,12 @@
                 case MessageBoxButtons.SaveDiscard: return Resources.MessageBoxButtons_Save;
                 case MessageBoxButtons.SaveDiscardCancel: return Resources.MessageBoxButtons_Save;
                 default:
-                    throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
+                    throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)MessageButtons, typeof(MessageBoxButtons));
             }
         }
         else if (buttonIndex == 1)
         {
-            switch (buttons)
+            switch (MessageButtons)
             {
                 case MessageBoxButtons.AbortRetryIgnore: return Resources.MessageBoxButtons_Retry;
                 case MessageBoxButtons.OK: return null;
@@ -63,12 +63,12 @@
                 case MessageBoxButtons.SaveDiscard: return Resources.MessageBoxButtons_Discard;
                 case MessageBoxButtons.SaveDiscardCancel: return Resources.MessageBoxButtons_Discard;
                 default:
-                    throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
+                    throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)MessageButtons, typeof(MessageBoxButtons));
             }
         }
         else if (buttonIndex == 2)
         {
-            switch (buttons)
+            switch (MessageButtons)
             {
                 case MessageBoxButtons.AbortRetryIgnore: return Resources.MessageBoxButtons_Ignore;
                 case MessageBoxButtons.OK: return null;
@@ -79,7 +79,7 @@
                 case MessageBoxButtons.SaveDiscard: return null;
                 case MessageBoxButtons.SaveDiscardCancel: return Resources.MessageBoxButtons_Cancel;
                 default:
-                    throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
+                    throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)MessageButtons, typeof(MessageBoxButtons));
             }
         }
         else
@@ -91,12 +91,11 @@
 
     private string GetButtonStyle(int buttonIndex)
     {
-        MessageBoxDefaultButton defaultButton = Parameters.Get<MessageBoxDefaultButton>("MessageBoxDefaultButton");
-        if (buttonIndex == 0 && defaultButton == MessageBoxDefaultButton.Button1)
+        if (buttonIndex == 0 && this.DefaultButton == MessageBoxDefaultButton.Button1)
             return "btn-primary";
-        else if (buttonIndex == 1 && defaultButton == MessageBoxDefaultButton.Button2)
+        else if (buttonIndex == 1 && this.DefaultButton == MessageBoxDefaultButton.Button2)
             return "btn-primary";
-        else if (buttonIndex == 2 && defaultButton == MessageBoxDefaultButton.Button3)
+        else if (buttonIndex == 2 && this.DefaultButton == MessageBoxDefaultButton.Button3)
             return "btn-primary";
         else
             return "btn-secondary";
@@ -107,8 +106,7 @@
     {
         MessageBoxDialogResult dialogResult;
 
-        MessageBoxButtons buttons = Parameters.Get<MessageBoxButtons>("MessageBoxButtons");
-        switch (buttons)
+        switch (this.MessageButtons)
         {
             case MessageBoxButtons.AbortRetryIgnore: dialogResult = MessageBoxDialogResult.Abort; break;
             case MessageBoxButtons.OK: dialogResult = MessageBoxDialogResult.OK; break;
@@ -119,7 +117,7 @@
             case MessageBoxButtons.SaveDiscard: dialogResult = MessageBoxDialogResult.Save; break;
             case MessageBoxButtons.SaveDiscardCancel: dialogResult = MessageBoxDialogResult.Save; break;
             default:
-                throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
+                throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)this.MessageButtons, typeof(MessageBoxButtons));
         }
 
         ModalDialogParameters returnParams = new ModalDialogParameters();
@@ -132,8 +130,7 @@
     {
         MessageBoxDialogResult dialogResult;
 
-        MessageBoxButtons buttons = Parameters.Get<MessageBoxButtons>("MessageBoxButtons");
-        switch (buttons)
+        switch (this.MessageButtons)
         {
             case MessageBoxButtons.AbortRetryIgnore: dialogResult = MessageBoxDialogResult.Retry; break;
             //case MessageBoxButtons.OK:
@@ -144,7 +141,7 @@
             case MessageBoxButtons.SaveDiscard: dialogResult = MessageBoxDialogResult.Discard; break;
             case MessageBoxButtons.SaveDiscardCancel: dialogResult = MessageBoxDialogResult.Discard; break;
             default:
-                throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
+                throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)this.MessageButtons, typeof(MessageBoxButtons));
         }
 
         ModalDialogParameters returnParams = new ModalDialogParameters();
@@ -157,8 +154,7 @@
     {
         MessageBoxDialogResult dialogResult;
 
-        MessageBoxButtons buttons = Parameters.Get<MessageBoxButtons>("MessageBoxButtons");
-        switch (buttons)
+        switch (this.MessageButtons)
         {
             case MessageBoxButtons.AbortRetryIgnore: dialogResult = MessageBoxDialogResult.Ignore; break;
             //case MessageBoxButtons.OK:
@@ -168,7 +164,7 @@
             case MessageBoxButtons.YesNoCancel: dialogResult = MessageBoxDialogResult.Cancel; break;
             case MessageBoxButtons.SaveDiscardCancel: dialogResult = MessageBoxDialogResult.Cancel; break;
             default:
-                throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)buttons, typeof(MessageBoxButtons));
+                throw new System.ComponentModel.InvalidEnumArgumentException("MessageBoxButtons", (int)this.MessageButtons, typeof(MessageBoxButtons));
         }
 
         ModalDialogParameters returnParams = new ModalDialogParameters();
