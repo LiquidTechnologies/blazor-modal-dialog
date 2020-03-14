@@ -77,10 +77,8 @@
 
 @code {
 
-    [CascadingParameter]
-    ModalDialogParameters Parameters { get; set; }
-
-    private ModalDataInputForm Form { get { return Parameters.Get<ModalDataInputForm>("Form"); } }
+    [Parameter]
+    public ModalDataInputForm Form { get; set; } 
 
     private Dictionary<string, string> Values { get; } = new Dictionary<string, string>();
     private Dictionary<string, ElementReference> DomElements = new Dictionary<string, ElementReference>();

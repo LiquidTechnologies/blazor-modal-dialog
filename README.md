@@ -111,7 +111,8 @@ The data the user submitted in the form can then be read and used (or ignored if
 ### Passing Arguments to a Dialog
 
 If you need to pass values to the component you are displaying in the modal dialog, then you can use the `ModalDialogParameters` object. 
-Any component which is displayed in the modal has access to this object as a `[CascadingParameter]`.
+The parameters added to the `ModalDialogParameters` object will be used to set the `[Parameter]` values on the component, in addition a
+`[CascadingParameter]` is also added containing the `ModalDialogParameters` object.
 
 ```html
 @page "/"
@@ -164,14 +165,13 @@ Any component which is displayed in the modal has access to this object as a `[C
 
 @code {
 
-    [CascadingParameter] ModalDialogParameters Parameters { get; set; }
+    [Parameter] 
+    public int MovieId { get; set; }
 
-    int MovieId { get; set; }
     Movie Movie { get; set; }
 
     protected override void OnInit()
     {
-        MovieId = Parameters.Get<int>("MovieId");
         LoadMovie(MovieId);
     }
 
@@ -220,7 +220,7 @@ A modal has a close button in the top right hand corner by default.
 
 #### Disabling background click cancellation
 
-You can disable cancelling the modal by clicking on the background using the `BackgroundClickToClose` parameter.
+You can disable canceling the modal by clicking on the background using the `BackgroundClickToClose` parameter.
 
 ```csharp
 @code {

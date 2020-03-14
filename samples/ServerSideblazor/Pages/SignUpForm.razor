@@ -21,16 +21,12 @@
 
 @code {
 
-    [CascadingParameter] ModalDialogParameters Parameters { get; set; }
-
-    string FirstName { get; set; }
-    string LastName { get; set; }
-    int FormId { get; set; }
-
-    protected override void OnInitialized()
-    {
-        FormId = Parameters.Get<int>("FormId");
-    }
+    [Parameter]
+    public string FirstName { get; set; }
+    [Parameter]
+    public string LastName { get; set; }
+    [Parameter]
+    public int FormId { get; set; }
 
     async void Ok_Clicked()
     {

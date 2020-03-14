@@ -24,9 +24,9 @@ namespace Blazor.ModalDialog
         /// </param>
         /// <param name="parameters">
         /// Key/Value collection of parameters to pass to Blazor component being displayed.
-        /// These are accessible within the Blazor Components via a cascading value i.e.
+        /// These are accessible within the Blazor Components via a [Parameter] properties i.e.
         /// <code>
-        /// [CascadingParameter] ModalDialogParameters Parameters { get; set; }
+        /// [Parameter] public int FormId { get; set; }
         /// </code>
         /// If null then an empty <see cref="ModalDialogParameters"/> object is passed to the <typeparamref name="TBlazorComponent"/> Blazor Component
         /// </param>
@@ -71,9 +71,9 @@ namespace Blazor.ModalDialog
         /// </param>
         /// <param name="parameters">
         /// Key/Value collection of parameters to pass to Blazor component being displayed.
-        /// These are accessible within the Blazor Components via a cascading value i.e.
+        /// These are accessible within the Blazor Components via [Parameter] properties i.e.
         /// <code>
-        /// [CascadingParameter] ModalDialogParameters Parameters { get; set; }
+        /// [Parameter] public int FormId { get; set; }
         /// </code>
         /// If null then an empty <see cref="ModalDialogParameters"/> object is passed to the <paramref name="dialogComponentType"/> Blazor Component
         /// </param>
@@ -173,10 +173,10 @@ namespace Blazor.ModalDialog
         ///     
         ///     @code {
         ///     
-        ///         [CascadingParameter] ModalDialogParameters Parameters { get; set; }
-        ///     
-        ///         string FirstName { get; set; }
-        ///         string LastName { get; set; }
+        ///         [Parameter]
+        ///         public string FirstName { get; set; }
+        ///         [Parameter]
+        ///         public string LastName { get; set; }
         ///     
         ///         async void Ok_Clicked()
         ///         {
@@ -245,10 +245,10 @@ namespace Blazor.ModalDialog
         ///     
         ///     @code {
         ///     
-        ///         [CascadingParameter] ModalDialogParameters Parameters { get; set; }
-        ///     
-        ///         string FirstName { get; set; }
-        ///         string LastName { get; set; }
+        ///         [Parameter]
+        ///         public string FirstName { get; set; }
+        ///         [Parameter]
+        ///         public string LastName { get; set; }
         ///     
         ///         async void Ok_Clicked()
         ///         {
