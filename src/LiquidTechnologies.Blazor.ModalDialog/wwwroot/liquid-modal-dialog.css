@@ -28,6 +28,8 @@
     border: 1px solid #fff;
     padding: 1.5rem;
     box-shadow: 0 2px 2px rgba(0,0,0,.25);
+    max-height: 90vh; /*90% of the browser height*/
+    max-width: 90vw; /*90% of the browser width*/
 }
 
 .liquid-modal-dialog-header {
@@ -50,6 +52,11 @@
     cursor: pointer;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+.liquid-modal-dialog-content{
+    overflow:auto;
+    padding-right:1rem;
 }
 
 .liquid-modal-dialog-center {

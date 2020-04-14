@@ -16,16 +16,16 @@
     <PackageTags>Blazor Razor Components Modal Dialogue MessageBox Async Dialog</PackageTags>
     <Description>Turns a Blazor Component into a Modal Dialog. Async methods allow dialogs to return values. Allows nested dialogs (i.e. a dialog can open a child dialog). Supports Blazor WebAssembly and Server. Includes Windows style Message Box for quick user feedback.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.9.6</Version>
+    <Version>0.9.7</Version>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>LiquidOpenSourcePublicKey.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.2" />
   </ItemGroup>
 
   <ItemGroup>

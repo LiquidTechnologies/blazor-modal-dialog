@@ -1,0 +1,50 @@
+﻿@page "/scrollableform"
+@inject IModalDialogService ModalService
+
+<h1>Liquid Technologies Modal Dialog Sample</h1>
+
+<hr class="mb-5" />
+
+<p>
+    This example also show how the form displays the form when it contains to much information for the screen.
+</p>
+
+<button class="btn btn-primary" @onclick="@Edit_Clicked">Edit Data</button>
+
+<hr class="mb-5" />
+
+<h3>Sample Code</h3>
+<pre>
+@@inject IModalDialogService ModalService
+
+...
+
+@@code {
+
+    async void Edit_Clicked()
+    {
+        ModalDataInputForm frm = new ModalDataInputForm("Edit Data", "When the fields are to big to fit on the form");
+
+        for(int i=0;i&lt;30;i++)
+            frm.AddStringField($"Field{i}", $"Field {i}", $"Value {i}", $"Field {i}");
+
+        await frm.ShowAsync(ModalService);
+    }
+}
+</pre>
+
+@code {
+
+    async void Edit_Clicked()
+    {
+        ModalDataInputForm frm = new ModalDataInputForm("Edit Data", "When the fields are to big to fit on the form");
+
+        for(int i=0;i<30;i++)
+            frm.AddStringField($"Field{i}", $"Field {i}", $"Value {i}", $"Field {i}");
+
+        await frm.ShowAsync(ModalService);
+    }
+}
+
+
+
