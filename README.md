@@ -92,7 +92,7 @@ The data the user submitted in the form can then be read and used (or ignored if
 
 ```html
 @page "/"
-@inject IModalDialogService Modal
+@inject IModalDialogService ModalDialog
 
 <button @onclick="SignUpBtn_Clicked" class="btn btn-primary">Sign Up Now</button>
 
@@ -115,7 +115,7 @@ The parameters added to the `ModalDialogParameters` object will be used to set t
 
 ```html
 @page "/"
-@inject IModalDialogService Modal
+@inject IModalDialogService ModalDialog
 
 <h1>My Movies</h1>
 
@@ -144,7 +144,7 @@ The parameters added to the `ModalDialogParameters` object will be used to set t
 
 ```html
 @inject IMovieService MovieService
-@inject IModalDialogService Modal
+@inject IModalDialogService ModalDialogService
 
 <div class="simple-form">
 
@@ -185,12 +185,12 @@ The parameters added to the `ModalDialogParameters` object will be used to set t
 
         ModalDialogParameters returnParameters = new ModalDialogParameters();
         returnParameters.Add("Movie", Movie);
-        Modal.Close(true, returnParameters);
+        ModalDialogService.Close(true, returnParameters);
     }
 
     void Cancel()
     {
-        Modal.Close(false);
+        ModalDialogService.Close(false);
     }
 }
 ```
