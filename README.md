@@ -43,7 +43,7 @@ dotnet add package LiquidTechnologies.Blazor.ModalDialog
 You will need to add the following using statement and add a call to register the Blazored Modal services in your applications `Startup.ConfigureServices` method.
 
 ```csharp
-using LiquidTechnologies.Blazor.ModalDialog;
+using Blazor.ModalDialog;
 
 public void ConfigureServices(IServiceCollection services)
 {
