@@ -56,8 +56,7 @@ public void ConfigureServices(IServiceCollection services)
 Add the following to your *_Imports.razor*
 
 ```csharp
-@using LiquidTechnologies.Blazor.ModalDialog
-@using LiquidTechnologies.Blazor.ModalDialog.Services
+@using Blazor.ModalDialog
 ```
 
 ### 3. Add Modal Component
